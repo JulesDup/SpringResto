@@ -18,7 +18,7 @@ public class AppJavaSpring {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		// récupération du bean Menu
-		Scanner scanner = context.getBean(Scanner.class);
+		
 		Menu menu = context.getBean(Menu.class);
 
 		menu.afficher();

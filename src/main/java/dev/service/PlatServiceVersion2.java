@@ -8,14 +8,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-@Primary
+@Service
+@Profile("PlatServiceVersion2")
 public class PlatServiceVersion2 implements IPlatService {
-	@Autowired
+
 	private IPlatDao dao;
 
+	/**
+	 * Constructeur
+	 * 
+	 * @param dao
+	 */
 	public PlatServiceVersion2(IPlatDao dao) {
 		this.dao = dao;
 	}
