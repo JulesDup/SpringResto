@@ -6,33 +6,39 @@ import dev.exception.PlatException;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary
 public class PlatServiceVersion2 implements IPlatService {
+	@Autowired
+	private IPlatDao dao;
 
-    private IPlatDao dao;
+	public PlatServiceVersion2(IPlatDao dao) {
+		this.dao = dao;
+	}
 
-    public PlatServiceVersion2(IPlatDao dao) {
-        this.dao = dao;
-    }
+	@Override
+	public List<Plat> listerPlats() {
+		return dao.listerPlats();
+	}
 
-    @Override
-    public List<Plat> listerPlats() {
-        return dao.listerPlats();
-    }
+	@Override
+	public void ajouterPlat(String nomPlat, Integer prixPlat) {
 
-    @Override
-    public void ajouterPlat(String nomPlat, Integer prixPlat) {
+		// règle métier
 
-        // règle métier
+		if (nomPlat.length() <= 5) {
+			throw new PlatException("un plat doit avoir un nom de plus de 5 caractères");
+		}
 
-        if (nomPlat.length() <= 5) {
-            throw new PlatException("un plat doit avoir un nom de plus de 5 caractères");
-        }
+		if (prixPlat <= 1000) {
+			throw new PlatException("le prix d'un plat doit être supérieur à 10 €");
+		}
 
-        if (prixPlat <= 1000) {
-            throw new PlatException("le prix d'un plat doit être supérieur à 10 €");
-        }
-
-        // persistance uniquement si les règles métiers sont respectées
-        dao.ajouterPlat(nomPlat, prixPlat);
-    }
+		// persistance uniquement si les règles métiers sont respectées
+		dao.ajouterPlat(nomPlat, prixPlat);
+	}
 }
