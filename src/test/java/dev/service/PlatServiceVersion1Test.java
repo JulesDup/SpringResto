@@ -43,8 +43,7 @@ public class PlatServiceVersion1Test {
 
 		assertThatThrownBy(() -> {
 			platServiceVersion1.ajouterPlat("falafel", 10);
-		})
-		.isInstanceOf(PlatException.class); 
+		}).isInstanceOf(PlatException.class);
 //		.hasMessage("le prix d'un plat doit être supérieur à 5 €");
 
 	}
@@ -60,7 +59,6 @@ public class PlatServiceVersion1Test {
 		Plat plat1 = new Plat("Falafel", 1800);
 		List<Plat> listPlat = new ArrayList<Plat>();
 		listPlat.add(plat1);
-
 		when(dao.listerPlats()).thenReturn(listPlat);
 		assertThat(platServiceVersion1.listerPlats()).isEqualTo(listPlat);
 	}
