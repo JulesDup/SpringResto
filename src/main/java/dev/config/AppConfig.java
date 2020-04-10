@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @ComponentScan({ "dev.ihm", "dev.service", "dev.dao" })
 @PropertySource("app.properties")
+@Import(DataSourceConfig.class) // peut ettre remplacé ac cOMPOENENT
 public class AppConfig {
 
 	@Bean
