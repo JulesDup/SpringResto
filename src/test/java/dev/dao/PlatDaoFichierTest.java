@@ -25,7 +25,7 @@ public class PlatDaoFichierTest {
 	@Test
 	void TestAjouterPlatCasPassant() {
 		Plat plat1 = new Plat("falafel", 1800);
-		List<Plat> listPlat = new ArrayList<Plat>();
+		List<Plat> listPlat = new ArrayList<>();
 		listPlat.add(plat1);
 		dao.ajouterPlat("falafel", 1800);
 		assertThat(dao.listerPlats()).isEqualTo(listPlat);
@@ -39,7 +39,7 @@ public class PlatDaoFichierTest {
 	@Test
 	void TestAjouterPlatIndépendant() {
 		Plat plat1 = new Plat("falafel1", 1800);
-		List<Plat> listPlat = new ArrayList<Plat>();
+		List<Plat> listPlat = new ArrayList<>();
 		listPlat.add(plat1);
 		dao.ajouterPlat("falafel1", 1800);
 		assertThat(dao.listerPlats()).isEqualTo(listPlat);

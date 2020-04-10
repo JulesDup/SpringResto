@@ -20,21 +20,22 @@ import dev.dao.PlatDaoMemoire;
 import dev.entite.Plat;
 import dev.exception.PlatException;
 
-//création du context
+//création de l'instance de test
 @ExtendWith(SpringExtension.class)
+//création du context
 @ContextConfiguration(classes = { PlatServiceVersion2.class, PlatDaoMemoire.class })
 //ou appConfig.class crée trop d'instances
 @ActiveProfiles({ "PlatDaoMemoir", "PlatServiceVersion2" })
 public class PlatServiceVersion2IntegrationTest {
 
-	// injection du bean a tester
+	// injection du bean a tester dans le context
 	@Autowired
 	private PlatServiceVersion2 platServiceVersion2;
 
 	@Test
 	void TestAjouterPlatCasPassant() {
 		Plat plat1 = new Plat("falafel", 1800);
-		List<Plat> listPlat = new ArrayList<Plat>();
+		List<Plat> listPlat = new ArrayList<>();
 		listPlat.add(plat1);
 		platServiceVersion2.ajouterPlat("falafel", 1800);
 		assertThat(platServiceVersion2.listerPlats()).isEqualTo(listPlat);
