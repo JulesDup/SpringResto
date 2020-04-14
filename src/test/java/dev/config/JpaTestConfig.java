@@ -14,27 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@Import(DataSourceH2TestConfig.class)
+@Import({ DataSourceH2TestConfig.class, JpaConfig.class })
 public class JpaTestConfig {
-	// Configuration de l'EntityManagerFactory
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		// vendorAdapter.setGenerateDdl(true);
-		vendorAdapter.setShowSql(true); // activer les logs SQL
-		LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		localContainerEntityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-		localContainerEntityManagerFactoryBean.setPackagesToScan("dev.entite");
-		localContainerEntityManagerFactoryBean.setDataSource(dataSource);
-		localContainerEntityManagerFactoryBean.afterPropertiesSet();
-		return localContainerEntityManagerFactoryBean;
-	}
 
-	// Configuration du gestionnaire de transaction pour JPA
-	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(emf);
-		return transactionManager;
-	}
 }

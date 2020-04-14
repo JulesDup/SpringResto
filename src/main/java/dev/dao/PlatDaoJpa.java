@@ -46,7 +46,7 @@ public class PlatDaoJpa implements IPlatDao {
 	}
 
 	@Override
-	@Transactional
+	@Transactional // permet de gere la methode bigin et commit de l'entity manager
 	public void ajouterPlat(String nomPlat, Integer prixPlat) {
 		Plat plat = new Plat(nomPlat, prixPlat);
 		em.persist(plat);

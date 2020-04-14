@@ -16,7 +16,9 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import dev.config.DataSourceH2TestConfig;
 import dev.config.JdbcTestConfig;
+import dev.config.JpaConfig;
 import dev.config.JpaTestConfig;
 import dev.entite.Plat;
 
@@ -31,6 +33,11 @@ public class PlatDaoJpaIntegrationTest {
 	@Test
 	void testLiterPlatsNonVide() {
 		assertThat(dao.listerPlats()).isNotEmpty();
+	}
+
+	@Test
+	void testLiterPlatsListeContient6() {
+		assertThat(dao.listerPlats()).hasSize(6);
 	}
 
 	@Test
