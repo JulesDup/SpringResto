@@ -95,5 +95,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Implémentation Spring pour ORM JPA -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
 	</dependencies>
+
+
 </project>
