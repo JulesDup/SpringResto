@@ -19,6 +19,7 @@ import dev.entite.Plat;
 
 @SpringJUnitConfig(classes = { SpringDataConfigTest.class })
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
+@Transactional
 @ActiveProfiles("PlatDaoJpa")
 public class PlatRepositoryIntegrationTest {
 
@@ -96,9 +97,12 @@ public class PlatRepositoryIntegrationTest {
 	void testSave() {
 		repository.save(new Plat("PalakPaneer", 2000));
 		assertThat(repository.findAll()).contains(new Plat("PalakPaneer", 2000));
-
 	}
-	
-	
-	
+
+	@Test
+	void testChangerNom() {
+		repository.changerNom("Côte de boeuf", "Falafel");
+		assertThat(repository.findAll()).contains(new Plat("Falafel", 1100));
+	}
+
 }
